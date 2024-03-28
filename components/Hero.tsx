@@ -43,13 +43,7 @@ const Hero = () => {
                     <div className="line-clamp-3 text-ellipsis overflow-hidden">
                         <GoDotFill className="text-black inline-block mr-1 " />
                         <span className="font-bold text-black text-balance">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos
-                            esse voluptas illo explicabo ducimus nihil dolorem blanditiis
-                            iusto, corporis illum tempora, modi non quisquam consequatur!
-                            Quos reprehenderit neque doloribus maiores, odit eaque natus
-                            nulla voluptatum a, rem, voluptas minima. Eligendi ab deleniti
-                            voluptatibus iure perspiciatis esse aspernatur ratione
-                            temporibus sapiente.
+                            Description
                         </span>
                     </div>
                 </div>
