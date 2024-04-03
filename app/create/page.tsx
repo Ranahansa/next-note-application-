@@ -49,22 +49,22 @@ const page = () => {
 
 
     return (
-        <div>
+        <div className='sm:px-4'>
             <Link href="/">
-                <button className="bg-[#64a0aa] hover: bg-[#64a0aa]/90 text-white font-bold rounded-lg text-sm px-3 py-2 text-center inline-flex dark:focus:ring-[#64a0aa]/50 mt-4 sm:mt-0 ml-20 ">
+                <button className="bg-[#64a0aa] hover: bg-[#64a0aa]/90 text-white font-bold rounded-lg text-sm px-3 py-2 text-center inline-flex dark:focus:ring-[#64a0aa]/50 mt-4 sm:mt-0 ml-20 sm:ml-0">
                     <IoCaretBack className="w-4 h-4 mt-[0.15rem] text-black" />
                     GoBack
                 </button>
             </Link>
             <div className="max-w-5xl mx-auto pt-5">
                 {/* Container for the title and form */}
-                <span className="text-2xl sm:text-3xl font-extrabold flex pt-6">
+                <span className="text-2xl sm:text-xl font-extrabold flex pt-6">
                     Create new note
                     <MdOutlinePostAdd className="ml-2" />
                 </span>
                 <form 
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-9 text-black mb-10 ml-10">
+                className="flex flex-col gap-9 text-black mb-10 ml-4 sm:ml-0">
                     <input
                         type="text"
                         name="title"
