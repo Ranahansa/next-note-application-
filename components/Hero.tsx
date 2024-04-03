@@ -1,4 +1,6 @@
-"use client";
+"use client"; // This is a client component
+
+//import necessary react components and icons
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { GoDotFill } from "react-icons/go";
@@ -6,18 +8,22 @@ import { ImFire } from "react-icons/im";
 import { MdAddTask } from "react-icons/md";
 import Link from "next/link";
 
+// Define the Note interface
 interface Note {
     _id: string;
     title: string;
     description: string;
 }
 
+//Functional component for the Hero section
 const Hero = () => {
+    // State variables for notes, loading state, and error message
     const [notes, setNotes] = useState<Note[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
+        //Fetch notes from the API
         const fetchNotes = async () => {
             try {
                 const response = await fetch("/api/note");
@@ -34,8 +40,9 @@ const Hero = () => {
             }
         };
         fetchNotes();
-    }, []); // Add empty dependency array
+    }, []); // Empty dependency array to run the effect only once
 
+    //Function to delete a note
     const deleteNote = async (noteId: string) => {
         const confirmed = window.confirm("Are you sure you want to delete this note?");
         if (confirmed) {
@@ -60,8 +67,11 @@ const Hero = () => {
 
     return (
         <div>
+            {/* Display error message if any */}
             {error && <p className="text-red-500 p-3">{error}</p>}
             <div className="w-full py-5 flex justify-center flex-col items-center pt-20">
+
+                {/*Link to create a new note*/}
                 <Link href="/create">
                     <button
                         type="button"
@@ -72,6 +82,7 @@ const Hero = () => {
                     </button>
                 </Link>
 
+                {/* Display loading message or notes */}
                 {isLoading ? (
                     <p className="text-red-500 p-3">Loading...</p>
                 ) : (
@@ -84,6 +95,9 @@ const Hero = () => {
                                 <ImFire className="inline-block mb-1 mr-1" />
                                 {note.title}
                                 <div className="flex justify-end items-center">
+                                    
+                                    {/*Link to edit and delete a note*/}
+
                                     <Link
                                         href={`/edit/${note._id}`}
                                         className="text-black hover:text-gray-700 cursor-pointer mr-2"
