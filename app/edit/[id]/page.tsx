@@ -1,29 +1,25 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
 import { IoCaretBack } from "react-icons/io5";
 import { MdEditCalendar } from "react-icons/md";
 
-const page = () => {
-  const [id, setId] = useState<string>("");
+
+interface PageProps {
+  params: {
+    id: string;
+  }
+}
+
+const Page : React.FC<PageProps> = ({ params }) => {
+  const router = useRouter();
+  const id = params.id
+
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const [router, setRouter] = useState<any>(null);
-
-  useEffect(() => {
-    setRouter(useRouter());
-  }, []);
-
-  useEffect(() => {
-    if (router && Array.isArray(router.query.id)) {
-      setId(router.query.id[0] ?? "");
-    } else if (router && router.query.id) {
-      setId(router.query.id ?? "");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router?.query.id]);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -61,9 +57,8 @@ const page = () => {
   return (
     <div>
       <Link href="/">
-        <button className="bg-[#64a0aa] hover: bg-[#64a0aa]/90 text-white font-bold rounded-lg text-sm px-3 py-2 text-center inline-flex dark:focus:ring-[#64a0aa]/50 mt-4 sm:mt-0 ml-20 ">
-          <IoCaretBack className="w-4 h-4 mt-[0.15rem] text-black" />
-          GoBack
+        <button className="bg-[#64a0aa] hover:bg-[#64a0aa]/90 text-white font-bold rounded-lg text-sm px-3 py-2 text-center inline-flex dark:focus:ring-[#64a0aa]/50 mt-4 sm:mt-0 ml-20">
+          <IoCaretBack className="w-4 h-4 mt-[0.15rem] text-black" /> GoBack
         </button>
       </Link>
       <div className="max-w-5xl mx-auto pt-5">
@@ -92,12 +87,12 @@ const page = () => {
           ></textarea>
           <button
             type="submit"
-            className="bg-[#64a0aa] hover: bg-[#64a0aa]/90 text-white font-bold rounded-lg text-sm px-5 py-2 text-center inline-flex dark:focus:ring-[#64a0aa]/50 mt-4 sm:mt-0 w-1/6 justify-center"
+            className="bg-[#64a0aa] hover:bg-[#64a0aa]/90 text-white font-bold rounded-lg text-sm px-5 py-2 text-center inline-flex dark:focus:ring-[#64a0aa]/50 mt-4 sm:mt-0 w-1/6 justify-center"
           >
             Save Note
           </button>
         </form>
-        <div className="absolute bottom-[-15.75rem] right-1 ">
+        <div className="absolute bottom-[-15.75rem] right-1">
           <Image
             src="/edit.png"
             alt="note"
@@ -111,4 +106,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
