@@ -63,7 +63,7 @@ npm install
 
 3. Set up environment variables:
 
-``Create a .env.local file in the root directory and add the following variables:
+Create a .env.local file in the root directory and add the following variables:
 
 MONGODB_URI=<your-mongodb-uri>
 Replace <your-mongodb-uri> with the connection string for your MongoDB database.
