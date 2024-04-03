@@ -1,6 +1,7 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { IoCaretBack } from "react-icons/io5";
 import { MdOutlinePostAdd } from "react-icons/md";
@@ -9,6 +10,7 @@ const page = () => {
 
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
+    const router = useRouter();
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value);
@@ -21,7 +23,7 @@ const page = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try{
-            const response =  await fetch('/api/notes', {
+            const response =  await fetch('/api/note', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -35,6 +37,8 @@ const page = () => {
                 console.log('Note created successfully');
                 setTitle('');
                 setDescription('');
+                alert('Note created successfully');
+                router.push('/');
             } else {
                 console.error('Failed to create note');
             }

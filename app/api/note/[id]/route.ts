@@ -19,17 +19,17 @@ export async function PUT(request: NextRequest) {
         }
 
         const { title, description } = await request.json();
-        const note = await Note.findByIdAndUpdate(
+        const updatedNote = await Note.findByIdAndUpdate(
             id,
             { title, description },
             { new: true }
         );
 
-        if (!note) {
+        if (!updatedNote) {
             return NextResponse.json({ error: "Note not found" }, { status: 404 });
         }
 
-        return NextResponse.json(note);
+        return NextResponse.json(updatedNote);
     } catch (error: any) {
         console.error(error);
         return NextResponse.json({ error: error.message }, { status: 500 });
