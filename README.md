@@ -2,20 +2,6 @@
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-# Note App
-
 This is a full-stack note application built with Next.js 14, TypeScript, and MongoDB. It allows users to create, update, delete, and view all their notes seamlessly. The application follows modern web development practices and leverages the latest features of Next.js for server-side rendering, static site generation, and API routes.
 
 ## Features
