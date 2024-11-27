@@ -1,10 +1,10 @@
-# Base image for building
-FROM node:18-alpine AS builder
+# Base image
+FROM node:16-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
@@ -16,24 +16,7 @@ COPY . .
 # Build the application
 RUN npm run build
 
-# Production image
-FROM node:18-alpine AS runner
-
-WORKDIR /app
-
-# Copy build artifacts from builder stage
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/next.config.js ./
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next ./.next
-
-# Install production dependencies
-RUN npm install --only=production
-
-# Set environment to production
-ENV NODE_ENV=production
-
-# Expose the port the app runs on
+# Expose the port
 EXPOSE 3000
 
 # Start the application
